@@ -1,0 +1,29 @@
+import pandas as pd
+import random
+
+# Seed for reproducibility
+random.seed(42)
+
+# Lists of sample data
+sales_reps = ["Alok", "Riya", "Simran", "Raj", "Kiran"]
+regions = ["North", "South", "East", "West"]
+product_categories = ["Electronics", "Clothing", "Furniture", "Groceries"]
+months = ["January", "February", "March", "April"]
+
+# Generate 50 sample rows
+data = {
+    "sales_rep": [random.choice(sales_reps) for _ in range(50)],
+    "region": [random.choice(regions) for _ in range(50)],
+    "product_category": [random.choice(product_categories) for _ in range(50)],
+    "sales_amount": [random.randint(500, 3000) for _ in range(50)],
+    "month": [random.choice(months) for _ in range(50)]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Ensure sales_amount is float
+df["sales_amount"] = df["sales_amount"].astype(float)
+
+# Display the first few rows
+print(df.head())
