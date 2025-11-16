@@ -1,0 +1,34 @@
+import pandas as pd
+
+data = {
+    "sales_rep": ["Alok", "Riya", "Riya", "Alok", "Simran", "Simran", "Raj", "Raj", "Riya"],
+    "region": ["North", "South", "South", "North", "West", "West", "East", "East", "South"],
+    "product_category": ["Electronics", "Clothing", "Clothing", "Electronics", "Furniture", "Furniture", "Groceries", "Groceries", "Clothing"],
+    "sales_amount": [1500, 1200, 1300, 1800, 2000, 1700, 800, 900, 1400],
+    "month": ["January", "January", "February", "February", "March", "March", "April", "April", "February"]
+}
+
+df = pd.DataFrame(data)
+
+# Write your code from here
+# Convert sales_amount to float
+df["sales_amount"] = df["sales_amount"].astype(float)
+
+# 1?? Average sales amount for Riya in February
+avg_riya_feb = df.loc[(df["sales_rep"] == "Riya") & (df["month"] == "February"), "sales_amount"].mean()
+
+# 2?? Sum of sales for Simran in the East region
+sum_simran_east = df.loc[(df["sales_rep"] == "Simran") & (df["region"] == "East"), "sales_amount"].sum()
+
+# 3?? Total sales amount for West region grouped by Furniture
+sum_west_furniture = df.loc[(df["region"] == "West") & (df["product_category"] == "Furniture"), "sales_amount"].sum()
+
+# 4?? Total sales amount for Electronics in February
+sum_electronics_feb = df.loc[(df["product_category"] == "Electronics") & (df["month"] == "February"), "sales_amount"].sum()
+
+# 5?? Highest sales amount achieved in February
+max_feb_sales = df.loc[df["month"] == "February", "sales_amount"].max()
+
+# Print each as float (new line)
+for val in [avg_riya_feb, sum_simran_east, sum_west_furniture, sum_electronics_feb, max_feb_sales]:
+    print(float(val))
